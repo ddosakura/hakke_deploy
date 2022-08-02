@@ -1,2 +1,0 @@
-- deno http over unix 不完善，且效率低
-- 考虑使用 go/rust 实现网关
