@@ -1,3 +1,7 @@
+# echo PWD=$PWD > .env
+# docker-compose up -d
+# docker-compose logs -f
+
 version: "3.7"
 services:
   # mongo:
@@ -19,8 +23,8 @@ services:
   #   # 6379
 
   # docker run --rm --name test-nginx \
-  #   -v ${PWD}/html:/usr/share/nginx/html:ro \
-  #   -v ${PWD}/gate.conf:/etc/nginx/conf.d/default.conf \
+  #   -v $PWD/html:/usr/share/nginx/html:ro \
+  #   -v $PWD/gate.conf:/etc/nginx/conf.d/default.conf \
   #   -p 8080:80 \
   #   -p 8000:8000 \
   #   --network 5beae06b14ff \
@@ -29,14 +33,12 @@ services:
     image: nginx:1.23.1
     restart: always
     volumes:
-      - ${PWD}/conf.d:/etc/nginx/conf.d:ro
-      - ${PWD}/ssl:/etc/nginx/ssl:ro
-      - ${PWD}/html:/usr/share/nginx/html:ro
+      - $PWD/conf.d:/etc/nginx/conf.d:ro
+      - $PWD/ssl:/etc/nginx/ssl:ro
+      - $PWD/html:/usr/share/nginx/html:ro
     ports:
-      # - 80:80
-      # - 443:443
-      - 8080:80
-      - 8443:443
+      - 80:80
+      - 443:443
 
 # volumes:
 #   db-mongo:
