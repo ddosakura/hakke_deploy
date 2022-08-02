@@ -1,0 +1,47 @@
+version: "3.7"
+services:
+  # mongo:
+  #   image: mongo:5.0.6
+  #   restart: always
+  #   secrets:
+  #     - mongo-user
+  #     - mongo-pass
+  #   environment:
+  #     MONGO_INITDB_ROOT_USERNAME_FILE: /run/secrets/mongo-user
+  #     MONGO_INITDB_ROOT_PASSWORD_FILE: /run/secrets/mongo-pass
+  #   volumes:
+  #     - db-mongo:/data/db
+  #   ports:
+  #     - 17017:27017
+  # redis:
+  #   image: redis:7.0
+  #   restart: always
+  #   # 6379
+
+  # docker run --rm --name test-nginx \
+  #   -v $PWD/html:/usr/share/nginx/html:ro \
+  #   -v $PWD/gate.conf:/etc/nginx/conf.d/default.conf \
+  #   -p 8080:80 \
+  #   -p 8000:8000 \
+  #   --network 5beae06b14ff \
+  #   -d nginx:1.23.1
+  hakke_deploy:
+    image: nginx:1.23.1
+    restart: always
+    volumes:
+      - $PWD/conf.d:/etc/nginx/conf.d:ro
+      - $PWD/ssl:/etc/nginx/ssl:ro
+      - $PWD/html:/usr/share/nginx/html:ro
+    ports:
+      # - 80:80
+      # - 443:443
+      - 8080:80
+      - 8443:443
+
+# volumes:
+#   db-mongo:
+# secrets:
+#   mongo-user:
+#     file: secrets/mongo-user
+#   mongo-pass:
+#     file: secrets/mongo-pass

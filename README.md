@@ -11,5 +11,4 @@ Read more:
 
 - docker
 - nginx
-  - https://blog.csdn.net/wzj_110/article/details/123747380
 - deno
